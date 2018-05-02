@@ -18,10 +18,10 @@ class UsersController extends Controller
         );
     }
 
-    public function get(Users $users) {
+    public function get(Users $user) {
 
         return response()->json(
-            $users::first()
+            $user
         );
     }
 

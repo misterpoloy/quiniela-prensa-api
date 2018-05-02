@@ -197,6 +197,7 @@ class QuinielaController extends Controller
                 ->leftJoin("USUARIOS as u2", function($join) {
                     $join->on("QUINIELAS.GANADOR","=","u2.ID");
                 })
+                ->where("QUINIELAS.ID", "=", $quiniela->ID)
                 ->first()
         );
     }
