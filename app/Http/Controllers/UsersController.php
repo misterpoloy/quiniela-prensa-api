@@ -46,7 +46,7 @@ class UsersController extends Controller
         return QuinielaInvitations::select("QUINIELAS.ID", "QUINIELAS.NOMBRE", "TIPO_DE_QUINIELA", "DESCRIPCION", "CREADO_POR",
             "CODIGO_COMPARTIR", "GANADOR", "QUINIELAS.FECHA_DE_CREACION", "QUINIELA_USUARIOS.USUARIO")
             ->where("QUINIELA_USUARIOS.USUARIO", $user->ID)
-            ->join("QUINIELA_USUARIOS","QUINIELAS.ID","=","QUINIELA_USUARIOS.QUINIELA")
+            ->join("QUINIELA_USUARIOS","QUINIELA_INVITACIONES.QUINIELA","=","QUINIELA_USUARIOS.QUINIELA")
             ->join("QUINIELAS","QUINIELA_USUARIOS.QUINIELA","=","QUINIELAS.ID")
             ->get();
     }
