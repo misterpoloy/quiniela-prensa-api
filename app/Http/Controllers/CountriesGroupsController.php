@@ -12,8 +12,8 @@ class CountriesGroupsController extends Controller
     public function index() {
         return response()->json(
             CountriesGroups::
-            join("PAIS","PAISES_GRUPOS.PAIS","=","PAIS.ID")
-                ->join("GRUPO","PAISES_GRUPOS.GRUPO","=","GRUPO.ID")
+            join("PAISES","PAISES_GRUPOS.PAIS","=","PAISES.ID")
+                ->join("GRUPOS","PAISES_GRUPOS.GRUPO","=","GRUPOS.ID")
                 ->get()
         );
     }
@@ -21,8 +21,8 @@ class CountriesGroupsController extends Controller
     public function getByCode($code) {
         return response()->json(
             CountriesGroups::
-            join("PAIS","PAISES_GRUPOS.PAIS","=","PAIS.ID")
-                ->join("GRUPO","PAISES_GRUPOS.GRUPO","=","GRUPO.ID")
+            join("PAISES","PAISES_GRUPOS.PAIS","=","PAISES.ID")
+                ->join("GRUPOS","PAISES_GRUPOS.GRUPO","=","GRUPOS.ID")
                 ->where('GRUPOS.CODIGO', $code)
                 ->get()
         );
@@ -32,8 +32,8 @@ class CountriesGroupsController extends Controller
 
         return response()->json(
             $countriesGroups::
-            join("PAIS","PAISES_GRUPOS.PAIS","=","PAIS.ID")
-                ->join("GRUPO","PAISES_GRUPOS.GRUPO","=","GRUPO.ID")
+            join("PAISES","PAISES_GRUPOS.PAIS","=","PAISES.ID")
+                ->join("GRUPOS","PAISES_GRUPOS.GRUPO","=","GRUPOS.ID")
                 ->get()
         );
     }

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62a26601-9d1a-43aa-9109-416571429e0c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CountriesGroupsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CountriesGroupsController.php" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/lumen.log" afterPath="$PROJECT_DIR$/storage/logs/lumen.log" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,31 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConfigurationController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfigurationController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UsersController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="48" column="105" lean-forward="false" selection-start-line="48" selection-start-column="105" selection-end-line="48" selection-end-column="105" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Configuration.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Configuration.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
               <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CountriesGroupsController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CountriesGroupsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -67,8 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Dotenv</find>
-      <find>Dotenv::load(__DIR__.'/../')</find>
       <find>AppServiceProvider</find>
       <find>$app-&gt;register(\Illuminate\Mail\MailServiceProvider::class</find>
       <find>services</find>
@@ -97,10 +87,14 @@
       <find>groups</find>
       <find>pais</find>
       <find>FECHA_DE_CREACION</find>
+      <find>join(&quot;PAIS&quot;,&quot;PAISES_GRUPOS.PAIS&quot;,&quot;=&quot;,&quot;PAIS.ID&quot;)</find>
+      <find>join(&quot;PAISES&quot;,&quot;PAISES_GRUPOS.PAIS&quot;,&quot;=&quot;,&quot;PAISES.ID&quot;)</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>public $timestamps</replace>
+      <replace>join(&quot;PAISES&quot;,&quot;PAISES_GRUPOS.PAIS&quot;,&quot;=&quot;,&quot;PAISES.ID&quot;)</replace>
+      <replace>join(&quot;GRUPOS&quot;,&quot;PAISES_GRUPOS.GRUPO&quot;,&quot;=&quot;,&quot;GRUPOS.ID&quot;)</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -130,7 +124,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/GroupsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CountriesController.php" />
         <option value="$PROJECT_DIR$/app/CountriesGroups.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CountriesGroupsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/QuinielaAwardController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/QuinielaUsersController.php" />
         <option value="$PROJECT_DIR$/app/Quiniela.php" />
@@ -159,6 +152,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ConfigurationController.php" />
         <option value="$PROJECT_DIR$/app/Configuration.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CountriesGroupsController.php" />
       </list>
     </option>
   </component>
@@ -286,6 +280,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -315,7 +310,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -415,12 +409,14 @@
       <workItem from="1525243522022" duration="339000" />
       <workItem from="1525267221672" duration="1283000" />
       <workItem from="1525269538549" duration="1263000" />
-      <workItem from="1525271386342" duration="598000" />
+      <workItem from="1525271386342" duration="794000" />
+      <workItem from="1525272680244" duration="175000" />
+      <workItem from="1525273249454" duration="627000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54939000" />
+    <option name="totallyTimeSpent" value="55937000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -763,14 +759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CountriesGroupsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserTokensController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="668">
@@ -786,11 +774,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Countries.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="39" />
-          <folding />
+        <state relative-caret-position="15">
+          <caret line="48" column="105" lean-forward="false" selection-start-line="48" selection-start-column="105" selection-end-line="48" selection-end-column="105" />
         </state>
       </provider>
     </entry>
@@ -802,10 +789,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersController.php">
+    <entry file="file://$PROJECT_DIR$/app/Countries.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="48" column="105" lean-forward="false" selection-start-line="48" selection-start-column="105" selection-end-line="48" selection-end-column="105" />
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CountriesGroupsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
           <folding />
         </state>
       </provider>
