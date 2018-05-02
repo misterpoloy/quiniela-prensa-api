@@ -1,0 +1,5 @@
+composer.phar
+/vendor/
+
+# We ignore the lock file to allow testes to be done on the last supported versions of Lumen and FastRoute
+composer.lock
