@@ -68,19 +68,18 @@ class QuinielaInvitationsController extends Controller
             $invitation->ESTATUS = 1;
             $invitation->save();
 
-            $message = Configuration::where("NOMBRE", "HTML_INVITACION")
-                ->first();
+            $message = Configuration::where("NOMBRE", "HTML_INVITACION")->first();
 
-            Mail::raw($message, function($msg) use ($user) {
+            Mail::raw($message->VALOR, function($msg) use ($user) {
                 $msg->subject("Invitación a Quinela");
-                $msg->to([$user->correo]);
+                $msg->to([$user->CORREO]);
                 $msg->from([env("MAIL_USERNAME")]);
             });
 
             return response()->json($invitation);
 
         } catch (Exception $e) {
-            return response()->json($e);
+            return response()->json([ 'status' => 'error', 'exception' => $e]);
         }
     }
 
@@ -106,6 +105,13 @@ class QuinielaInvitationsController extends Controller
                 'ESTATUS',
             ]);
             $quinielaInvitations->save();
+
+            if ($quinielaInvitations->ESTATUS == 2) {
+                $quiniela_user = new QuinielaUsers();
+                $quiniela_user->QUINIELA = $quinielaInvitations->QUINIELA;
+                $quiniela_user->USUARIO = $quinielaInvitations->USUARIO;
+                $quiniela_user->save();
+            }
 
             return response()->json($quinielaInvitations);
 
