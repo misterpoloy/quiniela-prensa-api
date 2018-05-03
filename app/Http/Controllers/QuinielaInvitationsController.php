@@ -54,18 +54,18 @@ class QuinielaInvitationsController extends Controller
 
     public function invite(Request $request) {
         try {
-            $user = Users::where("email", $request->email)->first();
+            $user = Users::where("CORREO", $request->email)->first();
             if ($user === null) {
                 $user = new Users();
-                $user->email = $request->email;
+                $user->correo = $request->email;
                 $user->save();
             }
 
             $invitation = new QuinielaInvitations();
-            $invitation->quinela = $request->quinela_id;
-            $invitation->user = $user->id;
-            $invitation->created_date = date('Y-m-d');
-            $invitation->status = 1;
+            $invitation->quiniela = $request->quinela_id;
+            $invitation->usuario = $user->id;
+            $invitation->fecha_de_creacion = date('Y-m-d');
+            $invitation->estatus = 1;
             $invitation->save();
 
             $message = Configuration::where("NAME", "HTML_INVITACION")
@@ -73,7 +73,7 @@ class QuinielaInvitationsController extends Controller
 
             Mail::raw($message, function($msg) use ($user) {
                 $msg->subject("Invitación a Quinela");
-                $msg->to([$user->email]);
+                $msg->to([$user->correo]);
                 $msg->from([env("MAIL_USERNAME")]);
             });
 
