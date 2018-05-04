@@ -26,17 +26,60 @@ class QuinielaInvitationsController extends Controller
     }
 
     public function getQuinielasByState($user, $status) {
-        return response()->json(
-            QuinielaInvitations::
-            select("QUINIELA_INVITACIONES.ID as quinela_invitation_ID", "USUARIO", "QUINIELA", "ESTATUS",
-                "QUINIELAS.NOMBRE as quinela_name", "CORREO", "TIPO_DE_QUINIELA", "DESCRIPCION", "CREADO_POR",
-                "USUARIOS.NOMBRE as user_name", "CODIGO_COMPARTIR", "GANADOR")
-                ->join("USUARIOS","QUINIELA_INVITACIONES.USUARIO","=","USUARIOS.ID")
-                ->join("QUINIELAS","QUINIELA_INVITACIONES.QUINIELA","=","QUINIELAS.ID")
-                ->where("QUINIELA_INVITACIONES.USUARIO", $user->ID)
-                ->where("QUINIELA_INVITACIONES.ESTATUS", $status)
-                ->get()
-        );
+
+        $data = QuinielaInvitations::           
+                select("QUINIELA_INVITACIONES.ID as quinela_invitation_ID", "USUARIO", "QUINIELA", "ESTATUS",
+                 "QUINIELAS.NOMBRE as quinela_name", "CORREO", "TIPO_DE_QUINIELA", "DESCRIPCION", "CREADO_POR",
+                 "USUARIOS.NOMBRE as user_name", "CODIGO_COMPARTIR", "GANADOR")
+                 ->join("USUARIOS","QUINIELA_INVITACIONES.USUARIO","=","USUARIOS.ID")
+                 ->join("QUINIELAS","QUINIELA_INVITACIONES.QUINIELA","=","QUINIELAS.ID")
+                 ->where("QUINIELA_INVITACIONES.USUARIO", $user->ID)               
+                 ->where("QUINIELA_INVITACIONES.ESTATUS", $status)
+                 ->get();
+
+        $returnArray = array();
+
+        foreach($data as $item) {
+
+           unset($item['USUARIO']);
+           $item['USUARIO'] = array('NOMBRE' => $item->user_name, 'CORREO' => $item->CORREO);
+           unset($item['user_name']);
+           unset($item['CORREO']);
+           array_push($returnArray, $item);
+
+        }
+
+        return response()->json($returnArray);
+       
+    }
+
+    public function getQuinielasByquinielaID($status, $quinielaID) {
+
+        $data = QuinielaInvitations::           
+                select("QUINIELA_INVITACIONES.ID as quinela_invitation_ID", "USUARIO", "QUINIELA", "ESTATUS",
+                 "QUINIELAS.NOMBRE as quinela_name", "CORREO", "TIPO_DE_QUINIELA", "DESCRIPCION", "CREADO_POR",
+                 "USUARIOS.NOMBRE as user_name", "CODIGO_COMPARTIR", "GANADOR")
+                 ->join("USUARIOS","QUINIELA_INVITACIONES.USUARIO","=","USUARIOS.ID")
+                 ->join("QUINIELAS","QUINIELA_INVITACIONES.QUINIELA","=","QUINIELAS.ID")
+                 ->where("QUINIELA_INVITACIONES.QUINIELA", $quinielaID)               
+                 ->where("QUINIELA_INVITACIONES.ESTATUS", $status)
+                 ->get();
+
+        $returnArray = array();
+
+        foreach($data as $item) {
+
+           unset($item['USUARIO']);
+           $item['USUARIO'] = array('NOMBRE' => $item->user_name, 'CORREO' => $item->CORREO);
+           unset($item['user_name']);
+           unset($item['CORREO']);
+           array_push($returnArray, $item);
+
+        }
+
+        return response()->json($returnArray);
+
+        
     }
 
     public function get(QuinielaInvitations $quinielaInvitations) {

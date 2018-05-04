@@ -112,6 +112,7 @@ $router->group(['prefix' => 'api'], function($router)
                 $router->get('','QuinielaInvitationsController@index');
                 $router->get('/{quiniela_invitation}','QuinielaInvitationsController@get');
                 $router->get('/{user}/status/{status}','QuinielaInvitationsController@getQuinielasByState');
+                $router->get('/quiniela/{quinielaID}/status/{status}','QuinielaInvitationsController@getQuinielasByquinielaID');
                 $router->get('/{invitationID}/accept', 'InvitationController@acceptInvitation');
                 $router->get('/{invitationID}/refuse', 'InvitationController@refuseInvitation');
                 $router->post('','QuinielaInvitationsController@create');
