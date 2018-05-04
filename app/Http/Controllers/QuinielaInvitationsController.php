@@ -16,7 +16,7 @@ class QuinielaInvitationsController extends Controller
     public function index() {
         return response()->json(
             QuinielaInvitations::
-                select("QUINIELA_INVITACIONES.ID as quinela_invitation_ID", "USUARIO", "QUINIELAS", "ESTATUS",
+                select("QUINIELA_INVITACIONES.ID as quinela_invitation_ID", "USUARIO", "QUINIELA", "ESTATUS",
                 "QUINIELAS.name as quinela_name", "CORREO", "TIPO_DE_QUINIELA", "DESCRIPCION", "CREADO_POR",
                     "USUARIOS.NOMBRE as user_name", "CODIGO_COMPARTIR", "GANADOR")
                 ->join("USUARIOS","QUINIELA_INVITACIONES.USUARIO","=","USUARIOS.ID")
@@ -28,13 +28,13 @@ class QuinielaInvitationsController extends Controller
     public function getQuinielasByState($user, $status) {
         return response()->json(
             QuinielaInvitations::
-            select("QUINIELA_INVITACIONES.ID as quinela_invitation_ID", "USUARIO", "QUINIELAS", "ESTATUS",
-                "QUINIELAS.name as quinela_name", "CORREO", "TIPO_DE_QUINIELA", "DESCRIPCION", "CREADO_POR",
+            select("QUINIELA_INVITACIONES.ID as quinela_invitation_ID", "USUARIO", "QUINIELA", "ESTATUS",
+                "QUINIELAS.NOMBRE as quinela_name", "CORREO", "TIPO_DE_QUINIELA", "DESCRIPCION", "CREADO_POR",
                 "USUARIOS.NOMBRE as user_name", "CODIGO_COMPARTIR", "GANADOR")
                 ->join("USUARIOS","QUINIELA_INVITACIONES.USUARIO","=","USUARIOS.ID")
                 ->join("QUINIELAS","QUINIELA_INVITACIONES.QUINIELA","=","QUINIELAS.ID")
                 ->where("QUINIELA_INVITACIONES.USUARIO", $user->ID)
-                ->where("QUINIELA_INVITACIONES.STATUS", $status)
+                ->where("QUINIELA_INVITACIONES.ESTATUS", $status)
                 ->get()
         );
     }
