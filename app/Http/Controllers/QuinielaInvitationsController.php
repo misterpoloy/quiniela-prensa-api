@@ -10,7 +10,7 @@ use App\Users;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Mail;
-
+use App\Mail\UserInfo;
 class QuinielaInvitationsController extends Controller
 {
     public function index() {
@@ -112,17 +112,19 @@ class QuinielaInvitationsController extends Controller
             $invitation->save();
 
             $message = Configuration::where("NOMBRE", "HTML_INVITACION")->first();
+            $quiniela = Quiniela::find($request->quinela_id);
+            
+            $data = array(
+                'user' => $user['NOMBRE'],
+                'quiniela' => $quiniela['NOMBRE']
+            );     
 
-            Mail::raw($message->VALOR, function($msg) use ($user) {
-                $msg->subject("Invitación a Quinela");
-                $msg->to([$user->CORREO]);
-                $msg->from([env("MAIL_USERNAME")]);
-            });
-
+            $emailSender = new UserInfo($data);//jp@calaps.com
+            Mail::to('jp@calaps.com')->send($emailSender); 
             return response()->json($invitation);
 
         } catch (Exception $e) {
-            return response()->json([ 'status' => 'error', 'exception' => $e]);
+            return response()->json([ 'status' => 'error', 'exception' => $e->getMessage()]);
         }
     }
 
