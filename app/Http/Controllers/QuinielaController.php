@@ -6,6 +6,7 @@ use App\Game;
 use App\Quiniela;
 use App\QuinielaPredications;
 use App\QuinielaUsers;
+use App\Users;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -205,8 +206,10 @@ class QuinielaController extends Controller
     public function create(Request $request) {
 
         try {
-
-            return response()->json(Quiniela::create($request->all()));
+            $quiniela=Quiniela::create($request->all());
+            $quiniela['quiniela_usuarios']=QuinielaUsers::create(['QUINIELA'=>$quiniela->ID,'USUARIO'=>$quiniela->CREADO_POR]);
+            $quiniela->CREADO_POR=Users::find($quiniela->CREADO_POR);
+            return response()->json($quiniela);
 
         } catch (Exception $e) {
             return response()->json($e);

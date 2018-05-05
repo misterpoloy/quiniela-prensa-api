@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Game;
 use App\Http\Utility\Utility;
+use App\Paise;
+use App\Structure;
+use App\Ubicacione;
 use App\Users;
 use Illuminate\Http\Request;
 use Exception;
@@ -21,6 +24,17 @@ class GameController extends Controller
                 ->get()
         );
     }
+    public function getByEstructura($id){
+        $estructura= Structure::find($id);
+        $games=Game::where('ESTRUCTURA',$estructura->ID)->get();
+        foreach ($games as $game){
+            $game->UBICACION=Ubicacione::find($game->UBICACION);
+            $game->ESTRUCTURA=Structure::find($game->ESTRUCTURA);
+            $game->JUGADOR_1=Paise::find($game->JUGADOR_1);
+            $game->JUGADOR_2=Paise::find($game->JUGADOR_2);
+        }
+        return $game;
+    }
 
     public function get(Game $game) {
 
@@ -34,6 +48,7 @@ class GameController extends Controller
                 ->first()
         );
     }
+
 
     public function create(Request $request) {
 

@@ -67,6 +67,7 @@ $router->group(['prefix' => 'api'], function($router)
             $router->group(['prefix' => '/game'], function($router) {
 
                 $router->get('','GameController@index');
+                $router->get('/estructura/{ESTRUCTURA}','GameController@getByEstructura');
                 $router->get('/{game}','GameController@get');
                 $router->get('/update/refresh','GameController@notify');
                 $router->post('','GameController@create');
