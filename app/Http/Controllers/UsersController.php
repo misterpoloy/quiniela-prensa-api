@@ -43,12 +43,15 @@ class UsersController extends Controller
 
     public function getMyInvitedQuinelas(Users $user) {
         //$user = $user::first();
-        return QuinielaInvitations::select("QUINIELAS.ID", "QUINIELAS.NOMBRE", "TIPO_DE_QUINIELA", "DESCRIPCION", "CREADO_POR",
+        $quinela=QuinielaInvitations::select("QUINIELAS.ID","QUINIELA_INVITACIONES.ID AS INVITACIONES_ID","QUINIELAS.NOMBRE", "TIPO_DE_QUINIELA", "DESCRIPCION", "CREADO_POR",
             "CODIGO_COMPARTIR", "GANADOR", "QUINIELAS.FECHA_DE_CREACION", "QUINIELA_INVITACIONES.USUARIO")
             ->join("QUINIELAS","QUINIELA_INVITACIONES.QUINIELA","=","QUINIELAS.ID")
             ->where("QUINIELA_INVITACIONES.USUARIO", $user->ID)
             ->where("QUINIELA_INVITACIONES.ESTATUS", 1)
             ->get();
+
+
+        return $quinela;
     }
 
     public function create(Request $request) {
