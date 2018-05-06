@@ -33,7 +33,7 @@ class GameController extends Controller
             $game->JUGADOR_1=Paise::find($game->JUGADOR_1);
             $game->JUGADOR_2=Paise::find($game->JUGADOR_2);
         }
-        return $game;
+        return $games;
     }
 
     public function get(Game $game) {

@@ -77,6 +77,7 @@ $router->group(['prefix' => 'api'], function($router)
                 $router->options('', function (){});
                 $router->options('/{game}', function (){});
                 $router->options('/update/refresh', function (){});
+                $router->options('/estructura/{ESTRUCTURA}',function (){});
 
             });
 
@@ -125,6 +126,9 @@ $router->group(['prefix' => 'api'], function($router)
                 $router->options('/{quiniela_invitation}', function (){});
                 $router->options('/{user}/status/{status}', function (){});
                 $router->options('/invite/byEmail', function (){});
+                $router->options('/quiniela/{quinielaID}/status/{status}', function (){});
+                $router->options('/{invitationID}/accept', function (){});
+                $router->options('/{invitationID}/refuse', function (){});
 
             });
 
