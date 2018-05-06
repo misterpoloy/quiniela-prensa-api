@@ -65,7 +65,7 @@ $router->group(['prefix' => 'api'], function($router)
             });
 
             $router->group(['prefix' => '/game'], function($router) {
-
+                
                 $router->get('','GameController@index');
                 $router->get('/estructura/{ESTRUCTURA}','GameController@getByEstructura');
                 $router->get('/{game}','GameController@get');
@@ -73,7 +73,6 @@ $router->group(['prefix' => 'api'], function($router)
                 $router->post('','GameController@create');
                 $router->patch('/{game}','GameController@update');
                 $router->delete('/{game}','GameController@destroy');
-
                 $router->options('', function (){});
                 $router->options('/{game}', function (){});
                 $router->options('/update/refresh', function (){});
@@ -87,6 +86,7 @@ $router->group(['prefix' => 'api'], function($router)
                 $router->get('/{quiniela_predication}','QuinielaPredicationsController@get');
                 $router->get('/user/{user}','QuinielaPredicationsController@getPredictionsByUser');
                 $router->post('','QuinielaPredicationsController@create');
+                $router->get('/quiniela/{quinielaID}/user/{userID}', 'QuinielaPredicationsController@getPredictionsByUserQuiniela');
                 $router->patch('/{quiniela_predication}','QuinielaPredicationsController@update');
                 $router->delete('/{quiniela_predication}','QuinielaPredicationsController@destroy');
 

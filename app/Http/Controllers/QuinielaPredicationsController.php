@@ -6,7 +6,7 @@ use App\Http\Utility\Utility;
 use App\QuinielaPredications;
 use Illuminate\Http\Request;
 use Exception;
-
+use App\Users;
 class QuinielaPredicationsController extends Controller
 {
     public function index() {
@@ -32,6 +32,21 @@ class QuinielaPredicationsController extends Controller
         );
     }
 
+     public function getPredictionsByUserQuiniela($userID, $quinielaID) {
+       
+        return response()->json(
+            QuinielaPredications::
+            join("PAISES as player1","QUINIELA_PREDICCIONES.JUEGO_1","=","player1.ID")
+                ->join("PAISES as player2","QUINIELA_PREDICCIONES.JUEGO_2","=","player2.ID")
+                ->join("JUEGOS","QUINIELA_PREDICCIONES.JUEGO","=","JUEGOS.ID")
+                ->join("QUINIELAS","QUINIELA_PREDICCIONES.JUEGO","=","QUINIELAS.ID")
+                ->where("QUINIELA_PREDICCIONES.USUARIO", $userID)
+                ->where("QUINIELA_PREDICCIONES.QUINIELA", $quinielaID)
+                ->get()
+        );
+    }
+
+
     public function get(QuinielaPredications $quinielaPredications) {
 
         return response()->json(
@@ -45,15 +60,18 @@ class QuinielaPredicationsController extends Controller
         );
     }
 
-    public function create(Request $request) {
-
+    public function create(Request $request) {   
+        
+       
         try {
-            $quinielas = [];
-            foreach ($request->all() as $predction) {
-                array_push($quinielas, QuinielaPredications::create($predction));
-            }
 
-            return response()->json($quinielas);
+            $prediction = $request->games;
+            foreach ($prediction as $item) {
+               QuinielaPredications::create($item);
+               
+            }
+            return response()->json($prediction);
+
 
         } catch (Exception $e) {
             return response()->json($e);
