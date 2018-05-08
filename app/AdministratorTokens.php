@@ -9,7 +9,9 @@
 namespace App;
 
 
-class AdministratorTokens
+use Illuminate\Database\Eloquent\Model;
+
+class AdministratorTokens extends Model
 {
     protected $table = 'ADMINISTRADORES_TOKENS';
     protected $primaryKey = 'ID';
