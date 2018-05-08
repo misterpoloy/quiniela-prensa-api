@@ -37,15 +37,14 @@ class QuinielaPredicationsController extends Controller
 
      public function getPredictionsByUserQuiniela($userID, $quinielaID) { 
 
-        $data =     QuinielaPredications::
+        $data =     QuinielaPredications:: 
                     join("PAISES as player1","QUINIELA_PREDICCIONES.JUEGO_1","=","player1.ID")
                         ->join("PAISES as player2","QUINIELA_PREDICCIONES.JUEGO_2","=","player2.ID")
-                        ->join("JUEGOS","QUINIELA_PREDICCIONES.JUEGO","=","JUEGOS.ID")
-                        ->join("QUINIELAS","QUINIELA_PREDICCIONES.QUINIELA","=","QUINIELAS.ID")
+                        ->join("JUEGOS","QUINIELA_PREDICCIONES.JUEGO","=","JUEGOS.ID")                       
                         ->where("QUINIELA_PREDICCIONES.USUARIO", $userID)
                         ->where("QUINIELA_PREDICCIONES.QUINIELA", $quinielaID)
-                        ->get();     
-
+                        ->get();    
+       
         foreach ($data as $item) {
 
            $JUEGO_id = $item['JUEGO'];
@@ -74,8 +73,8 @@ class QuinielaPredicationsController extends Controller
           
            unset($item['FECHA']); unset($item['ESTRUCTURA']); unset($item['UBICACION']); unset($item['JUGADOR_1']);
            unset($item['JUGADOR_2']); unset($item['GOLES_1']); unset($item['GOLES_2']); unset($item['OPCIONES_DE_SELECCION']);
-           unset($item['NOMBRE']);unset($item['ISO']);unset($item['TIPO_DE_QUINIELA']);unset($item['DESCRIPCION']);
-           unset($item['CREADO_POR']);unset($item['FECHA_DE_CREACION']);unset($item['CODIGO_COMPARTIR']);unset($item['GANADOR']);         
+           unset($item['ISO']);
+                  
         }
        
         return response()->json($data);
