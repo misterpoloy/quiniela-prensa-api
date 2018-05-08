@@ -32,8 +32,10 @@ class QuinielaController extends Controller
                 //Obtener mis resultados
                 $groups_results = QuinielaPredications::
                 where("QUINIELA", $quiniela->ID)
-                    ->join("JUEGOS", "QUINIELA_PREDICCIONES.ID", "=", "JUEGOS.ID")
-                    ->where("ESTADO", 1)
+                    ->join("JUEGOS", "QUINIELA_PREDICCIONES.JUEGO", "=", "JUEGOS.ID")
+                    ->where("GOLES_1", '!=', null)
+                    ->where("GOLES_2", '!=', null)
+                    ->where("USUARIO", "=", $user->USUARIO)
                     ->get();
 
                 if ($groups_results != null) {
@@ -41,7 +43,7 @@ class QuinielaController extends Controller
 
                         //Obtener juego
                         $game = Game::where("ID", $result->JUEGO)
-                            ->get();
+                            ->first();
 
                         $score = false;
                         $draw = false;
@@ -53,7 +55,7 @@ class QuinielaController extends Controller
                         $winner_player = null;
                         if ($game->GOLES_1 > $game->GOLES_2) {
                             $winner_player = $game->JUGADOR_1;
-                        } else if ($game->GOLES_2 -> $game->GOLES_1) {
+                        } else if ($game->GOLES_2 > $game->GOLES_1) {
                             $winner_player = $game->JUGADOR_2;
                         } else if ($game->GOLES_1 == $game->GOLES_2) {
                             $draw = true;
@@ -127,18 +129,32 @@ class QuinielaController extends Controller
                     }
                 }
 
+                $realUser = Users::where("ID", "=", $user->USUARIO)->first();
+
                 array_push($places, [
-                    'USUARIO' => $user->ID,
-                    'NOMBRE' => $user->NOMBRE,
+                    'USUARIO' => $realUser->ID,
+                    'NOMBRE' => $realUser->NOMBRE,
                     'PUNTOS'=> $points
                 ]);
 
             }
 
+            array_push($places, [
+                'USUARIO' => 25,
+                'NOMBRE' => 'My Test User',
+                'PUNTOS'=> 30
+            ]);
+
+            array_push($places, [
+                'USUARIO' => 30,
+                'NOMBRE' => 'My Test User',
+                'PUNTOS'=> 27
+            ]);
+
         }
 
         uasort($places, function($item1, $item2){
-            return $item1->PUNTOS < $item2->PUNTOS;
+            return $item1['PUNTOS'] < $item2['PUNTOS'];
         });
 
         return response()->json(
@@ -150,7 +166,7 @@ class QuinielaController extends Controller
         $winner = false;
         if ($result->GOL_1 > $result->GOL_2) {
             $winner = $result->JUGADOR_1 == $winner_player;
-        } else if ($result->GOL_2 -> $result->GOL_1) {
+        } else if ($result->GOL_2 > $result->GOL_1) {
             $winner = $result->JUGADOR_2 == $winner_player;
         } else if ($result->GOL_1 == $result->GOL_2) {
             $winner = $draw;
