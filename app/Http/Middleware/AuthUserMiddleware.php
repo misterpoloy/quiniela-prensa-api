@@ -9,7 +9,9 @@
 namespace App\Http\Middleware;
 
 use App\UserTokens;
+use App\AdministratorTokens;
 use Closure;
+use \Exception;
 
 class AuthUserMiddleware
 {
@@ -22,19 +24,30 @@ class AuthUserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
-        /*$api_key = $request->header()['api-key'];
-        if ($api_key !== null) {
+        try {
+            $api_key = $request->header()['api-key'];
+            if ($api_key !== null) {
 
-            $user_token = UserTokens::where('token', $api_key)->first();
-            if ($user_token !== null) {
-                return $next($request);
+                $user_token = UserTokens::where('TOKEN', $api_key)->first();
+                if ($user_token !== null) {
+                    return $next($request);
+                }
+
+                $user_token = AdministratorTokens::where('TOKEN', $api_key)->first();
+                if ($user_token !== null) {
+                    return $next($request);
+                }
+
+
             }
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Not authorized'
+            ], 401);
         }
-
         return response()->json([
             'message' => 'Not authorized'
-        ], 401);*/
+        ], 401);
 
     }
 }
