@@ -139,18 +139,6 @@ class QuinielaController extends Controller
 
             }
 
-            array_push($places, [
-                'USUARIO' => 25,
-                'NOMBRE' => 'My Test User',
-                'PUNTOS'=> 30
-            ]);
-
-            array_push($places, [
-                'USUARIO' => 30,
-                'NOMBRE' => 'My Test User',
-                'PUNTOS'=> 27
-            ]);
-
         }
 
         uasort($places, function($item1, $item2){
