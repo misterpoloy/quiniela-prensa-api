@@ -16,6 +16,7 @@ class Game extends Model
         'JUGADOR_2',
         'GOLES_1',
         'GOLES_2',
+        'OPCIONES_DE_SELECCION',
         'ESTADO'
     ];
 

@@ -1,2 +1,3 @@
-<h1 style="color: #1b1b1b;"> Welcome </h1>
-<bold> Hello {{$user}}, welcome to the quiniela {{$quiniela}}</h2>
+<h1 style="color: #1b1b1b;"> ¡Tienes una invitación! </h1>
+<bold> Hola {{$user}},  Te han retado a participar en la quiniela ( {{$quiniela}} ) mundialista de Prensa Libre. <br />¿Estás listo para unirte a la fiebre de Rusia 2018? <a href="http://www.quiniela.com:5050/">Haz clic aquí.</a></h2><br />
+<a href="http://www.quiniela.com:5050/"><img src="https://preview.ibb.co/krD1US/share_email2.jpg" alt="share email2" border="0" /></a>

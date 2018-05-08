@@ -29,6 +29,6 @@ class UserInfo extends Mailable
      */
     public function build()
     {
-        return $this->subject('Invitación para la quiniela XXX')->view('myemailview')->with($this->sender);
+        return $this->subject('Invitación para quiniela Prensa Libre 2018')->view('myemailview')->with($this->sender);
     }
 }

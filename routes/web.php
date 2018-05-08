@@ -92,6 +92,7 @@ $router->group(['prefix' => 'api'], function($router)
 
                 $router->options('', function (){});
                 $router->options('/{quiniela_predication}', function (){});
+                $router->options('/quiniela/{quinielaID}/user/{userID}', function (){});
                 $router->options('/user/{user}', function (){});
 
             });
