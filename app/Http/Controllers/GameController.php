@@ -93,6 +93,30 @@ class GameController extends Controller
 
         try {
 
+            $game = Utility::setPropertiesToUpdate($request, $game, [
+                'ESTRUCTURA',
+                'UBICACION',
+                'JUGADOR_1',
+                'JUGADOR_2',
+                'GOLES_1',
+                'GOLES_2',
+                'FECHA',
+                'ESTADO'
+            ]);
+            $game->save();
+
+            return response()->json($game);
+
+
+        } catch (Exception $e) {
+            return response()->json($e);
+        }
+    }
+
+    public function updateAll(Request $request) {
+
+        try {
+
             $games = [];
             foreach ($request->all() as $game) {
                 $game = Utility::setPropertiesToUpdate($request, $game, [
