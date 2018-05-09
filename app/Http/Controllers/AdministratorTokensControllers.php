@@ -16,7 +16,6 @@ use Illuminate\Http\Request;
 class AdministratorTokensControllers
 {
     public function login(Request $request) {
-
         $email = $request->CORREO;
         $password = $request->PASSWORD;
 
@@ -27,13 +26,13 @@ class AdministratorTokensControllers
         if ($admin !== null) {
             $api_token = uniqid();
             $admin_token = new AdministratorTokens();
-            $admin_token->user = $admin->ID;
-            $admin_token->token = $api_token;
+            $admin_token->ADMINISTRADOR = $admin->ID;
+            $admin_token->TOKEN = $api_token;
 
             if ($admin_token->save()) {
                 return response()->json([
                     'api_token' => $api_token,
-                    'id=' => $admin->I
+                    'id' => $admin->ID
                 ]);
             }
         }
