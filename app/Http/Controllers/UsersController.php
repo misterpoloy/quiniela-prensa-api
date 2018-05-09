@@ -7,7 +7,9 @@ use App\Quiniela;
 use App\QuinielaInvitations;
 use App\QuinielaUsers;
 use App\Users;
+use App\Mail\UserNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Exception;
 
 class UsersController extends Controller
@@ -52,6 +54,22 @@ class UsersController extends Controller
 
 
         return $quinela;
+    }
+
+    public function sendEmail() {
+
+        $users = Users::all();
+
+        foreach($users as $user) {
+            $data = array(
+                'name' => $user['NOMBRE']               
+            );     
+
+            $emailSender = new UserNotification($data);//jp@calaps.com
+            Mail::to('jp@calaps.com')->send($emailSender); 
+        }
+       
+        return response()->json(['status' => 'success']);
     }
 
     public function create(Request $request) {

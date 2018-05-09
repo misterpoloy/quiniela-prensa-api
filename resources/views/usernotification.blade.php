@@ -1,0 +1,1 @@
+<div> Hello {{$name}},  we have updates on the Quiniela </div>
