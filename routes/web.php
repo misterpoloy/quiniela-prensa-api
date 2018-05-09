@@ -71,10 +71,12 @@ $router->group(['prefix' => 'api'], function($router)
                 $router->get('/{game}','GameController@get');
                 $router->get('/update/refresh','GameController@notify');
                 $router->post('','GameController@create');
+                $router->patch('/all','GameController@updateAll');
                 $router->patch('/{game}','GameController@update');
                 $router->delete('/{game}','GameController@destroy');
                 $router->options('', function (){});
                 $router->options('/{game}', function (){});
+                $router->options('/all', function (){});
                 $router->options('/update/refresh', function (){});
                 $router->options('/estructura/{ESTRUCTURA}',function (){});
 
