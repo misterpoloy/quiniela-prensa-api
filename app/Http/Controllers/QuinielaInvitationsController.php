@@ -120,7 +120,7 @@ class QuinielaInvitationsController extends Controller
             );     
 
             $emailSender = new UserInfo($data);//jp@calaps.com
-            Mail::to('jp@calaps.com')->send($emailSender); 
+            Mail::to($request->email)->send($emailSender); 
             return response()->json($invitation);
 
         } catch (Exception $e) {

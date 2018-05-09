@@ -153,6 +153,7 @@ $router->group(['prefix' => 'api'], function($router)
                 $router->get('','UsersController@index');
                 $router->get('/{user}','UsersController@get');
                 $router->post('','UsersController@create');
+                $router->get('/sendemail', 'UsersController@sendEmail');
                 $router->patch('/{user}','UsersController@update');
                 $router->delete('/{user}','UsersController@destroy');
 
