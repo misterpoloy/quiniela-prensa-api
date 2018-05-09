@@ -152,7 +152,7 @@ $router->group(['prefix' => 'api'], function($router)
                 $router->get('','UsersController@index');
                 $router->get('/{user}','UsersController@get');
                 $router->post('','UsersController@create');
-                $router->get('/sendemail', 'UsersController@sendEmail');
+                $router->get('/send/email', 'UsersController@sendEmail');
                 $router->patch('/{user}','UsersController@update');
                 $router->delete('/{user}','UsersController@destroy');
 
@@ -162,6 +162,7 @@ $router->group(['prefix' => 'api'], function($router)
 
                 $router->options('', function (){});
                 $router->options('/{user}', function (){});
+                $router->options('/send/email', function (){});
                 $router->options('/{user}/quinela', function (){});
                 $router->options('/{user}/quinela/belongs', function (){});
                 $router->options('/{user}/quinela/invited', function (){});
