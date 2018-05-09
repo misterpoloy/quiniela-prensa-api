@@ -76,7 +76,7 @@ $router->group(['prefix' => 'api'], function($router)
                 $router->delete('/{game}','GameController@destroy');
                 $router->options('', function (){});
                 $router->options('/{game}', function (){});
-                $router->options('/all', function (){});
+                //$router->options('/all', function (){});
                 $router->options('/update/refresh', function (){});
                 $router->options('/estructura/{ESTRUCTURA}',function (){});
 
