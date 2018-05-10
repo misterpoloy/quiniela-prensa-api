@@ -66,7 +66,7 @@ class UsersController extends Controller
             );     
 
             $emailSender = new UserNotification($data);//jp@calaps.com
-            Mail::to('jp@calaps.com')->send($emailSender); 
+            Mail::to($user['CORREO'])->send($emailSender); 
         }
        
         return response()->json(['status' => 'success']);
