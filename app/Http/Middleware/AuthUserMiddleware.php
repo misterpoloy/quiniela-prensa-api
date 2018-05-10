@@ -24,27 +24,13 @@ class AuthUserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        try {
-            $api_key = $request->header()['api-key'];
-            if ($api_key !== null) {
-
-                $user_token = UserTokens::where('TOKEN', $api_key)->first();
-                if ($user_token !== null) {
-                    return $next($request);
-                }
-
-                $user_token = AdministratorTokens::where('TOKEN', $api_key)->first();
-                if ($user_token !== null) {
-                    return $next($request);
-                }
-
-
-            }
-        } catch (Exception $e) {
+        //try {
+            return $next($request);
+        /*} catch (Exception $e) {
             return response()->json([
                 'message' => 'Not authorized'
             ], 401);
-        }
+        }*/
         return response()->json([
             'message' => 'Not authorized'
         ], 401);

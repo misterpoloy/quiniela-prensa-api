@@ -1,3 +1,3 @@
 <h1 style="color: #1b1b1b;"> ¡Hemos actualizado los resultados de los partidos! </h1>
-<bold> Hola {{$name}},</bold><br /><br />Descubre cómo los resultados de los partidos afectaron tus quinielas, ingresando <a href="http://www.quiniela.com:5050/">aquí.</a><br /><br />
+<bold> Hola <?php echo e($name); ?>,</bold><br /><br />Descubre cómo los resultados de los partidos afectaron tus quinielas, ingresando <a href="http://www.quiniela.com:5050/">aquí.</a><br /><br />
 <a href="http://www.quiniela.com:5050/"><img src="https://preview.ibb.co/datYuS/share_email.jpg" alt="share email2" border="0" /></a>
