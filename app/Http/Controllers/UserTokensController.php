@@ -16,7 +16,11 @@ class UserTokensController extends Controller
         $url = env('PRENSA_URL') . $api_token . ".json";
 
         $client = new Client();
-        $res = $client->get($url, []);
+        $res = $client->get($url, [
+			'curl' => [
+				CURLOPT_SSL_VERIFYPEER => false
+			]
+		]);
         $body = $res->getBody();
         $body = json_decode($body);
         if ($res->getStatusCode() === 200) {
