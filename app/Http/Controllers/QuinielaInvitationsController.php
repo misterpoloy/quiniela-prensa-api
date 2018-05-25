@@ -103,25 +103,33 @@ class QuinielaInvitationsController extends Controller
                 $user->CORREO = $request->email;
                 $user->save();
             }
+			
+			$invitation = QuinielaInvitations::where('USUARIO','='$user->ID)
+				->where('QUINIELA', $request->quinela_id)->get()->first();
+			
+			if ($invitation == null) {
+				$invitation = new QuinielaInvitations();
+				$invitation->QUINIELA = $request->quinela_id;
+				$invitation->USUARIO = $user->ID;
+				$invitation->FECHA_DE_CREACION = date('Y-m-d');
+				$invitation->ESTATUS = 1;
+				$invitation->save();
 
-            $invitation = new QuinielaInvitations();
-            $invitation->QUINIELA = $request->quinela_id;
-            $invitation->USUARIO = $user->ID;
-            $invitation->FECHA_DE_CREACION = date('Y-m-d');
-            $invitation->ESTATUS = 1;
-            $invitation->save();
+				$message = Configuration::where("NOMBRE", "HTML_INVITACION")->first();
+				$quiniela = Quiniela::find($request->quinela_id);
+				
+				$data = array(
+					'user' => $user['NOMBRE'],
+					'quiniela' => $quiniela['NOMBRE']
+				);     
 
-            $message = Configuration::where("NOMBRE", "HTML_INVITACION")->first();
-            $quiniela = Quiniela::find($request->quinela_id);
+				$emailSender = new UserInfo($data);//jp@calaps.com
+				Mail::to($request->email)->send($emailSender); 
+				return response()->json($invitation);
+			}
+			
+			return response()->json([ 'message' => 'El usuario ya fue invitado' ]);
             
-            $data = array(
-                'user' => $user['NOMBRE'],
-                'quiniela' => $quiniela['NOMBRE']
-            );     
-
-            $emailSender = new UserInfo($data);//jp@calaps.com
-            Mail::to($request->email)->send($emailSender); 
-            return response()->json($invitation);
 
         } catch (Exception $e) {
             return response()->json([ 'status' => 'error', 'exception' => $e->getMessage()]);
