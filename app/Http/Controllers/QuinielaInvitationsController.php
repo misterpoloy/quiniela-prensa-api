@@ -98,14 +98,15 @@ class QuinielaInvitationsController extends Controller
     public function invite(Request $request) {
         try {
             $user = Users::where("CORREO", $request->email)->first();
+
             if ($user === null) {
                 $user = new Users();
                 $user->CORREO = $request->email;
                 $user->save();
             }
 			
-			$invitation = QuinielaInvitations::where('USUARIO','='$user->ID)
-				->where('QUINIELA', $request->quinela_id)->get()->first();
+			$invitation = QuinielaInvitations::where('USUARIO','=', $user->ID)
+				                             ->where('QUINIELA', $request->quinela_id)->first();
 			
 			if ($invitation == null) {
 				$invitation = new QuinielaInvitations();
@@ -126,8 +127,7 @@ class QuinielaInvitationsController extends Controller
 				$emailSender = new UserInfo($data);//jp@calaps.com
 				Mail::to($request->email)->send($emailSender); 
 				return response()->json($invitation);
-			}
-			
+			} 			
 			return response()->json([ 'message' => 'El usuario ya fue invitado' ]);
             
 
