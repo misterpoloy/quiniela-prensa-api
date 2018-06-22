@@ -1,0 +1,3 @@
+<h1 style="color: #1b1b1b;"> ¡Tienes una invitación! </h1>
+<bold> Hola <?php echo e($user); ?>,</bold><br /><br />Te han retado a participar en la quiniela ( <?php echo e($quiniela); ?> ), de la quiniela mundialista de Prensa Libre. <br />¿Estás listo para unirte a la fiebre de Rusia 2018? <a href="http://www.quiniela.com:5050/">Haz clic aquí para aceptar el reto.</a><br /><br />
+<a href="https://quiniela.prensalibre.com"><img src="https://preview.ibb.co/krD1US/share_email2.jpg" alt="share email2" border="0" /></a>

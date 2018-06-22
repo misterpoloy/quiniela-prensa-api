@@ -150,7 +150,6 @@ $router->group(['prefix' => 'api'], function($router)
 
             $router->group(['prefix' => '/user'], function($router) {
 
-                $router->get('','UsersController@index');
                 $router->get('/{user}','UsersController@get');
                 $router->post('','UsersController@create');
                 $router->get('/send/email', 'UsersController@sendEmail');
@@ -161,7 +160,6 @@ $router->group(['prefix' => 'api'], function($router)
                 $router->get('/{user}/quinela/belongs','UsersController@getQuinelas');
                 $router->get('/{user}/quinela/invited','UsersController@getMyInvitedQuinelas');
 
-                $router->options('', function (){});
                 $router->options('/{user}', function (){});
                 $router->options('/send/email', function (){});
                 $router->options('/{user}/quinela', function (){});
